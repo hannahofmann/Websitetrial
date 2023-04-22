@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html> 
-<head> 
-     <script type="text/javascript" src="https://github.com/hannahofmann/Websitetrial/blob/main/sketch_drawing.java"></script> 
-</head> 
-<body> 
-     <canvas data-processing-sources="https://github.com/hannahofmann/Websitetrial/blob/main/sketch_drawing.pde"></canvas> 
-</body> 
-</html> 
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Processing Sketch</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+  <script src="sketch.js"></script>
+</head>
+<body>
+  <canvas id="mycanvas"></canvas>
+  <script>
+    var canvas = document.getElementById("mycanvas");
+    var processingInstance = new Processing(canvas, sketchProc);
+  </script>
+</body>
+</html>
+
+
+
