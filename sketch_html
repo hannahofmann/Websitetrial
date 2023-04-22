@@ -4,7 +4,181 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
 </head>
 <body>
-<canvas data-processing-sources="sketch_drawing.pde"></canvas>
-</body>
+ <script type="application/processing">
+ int p = 50; 
+int k = 100;
+PFont font;
+PGraphics foreground;
+int g;
+int n;
+
+
+void setup() {
+
+size(1080, 1080);
+pixelDensity(1);
+smooth();
+font = createFont("Roboto-Bold", 114);
+foreground = createGraphics(width, height);   
+
+}
+
+void keyPressed() {
+  foreground.beginDraw();
+  foreground.textSize(144);
+  foreground.textFont(font);
+
+
+  float textWidth = foreground.textWidth(key); 
+  if (p + textWidth > width) { 
+    p = 50; 
+    k += 100; 
+  }
+  foreground.text(key, p, k); 
+  p += textWidth;
+   foreground.endDraw();
+ } 
+ 
+
+void draw() {
+image(foreground, 0, 0);
+color z = color(0, 126, 255, 0);
+color c = color(random(0,255), random(0,255),random(0,255));
+
+ if (keyPressed == true) {
+ 
+  // A random squares
+  if (key == 'a' || key == 'A') {
+     strokeWeight(0);
+     fill(c);
+     rect(random(0,1920), random(0,1080), 50, 50) ;
+   } 
+  
+  
+  // B Bezier
+  if (key == 'b' || key == 'B') {
+     fill(z);
+     strokeWeight(1);
+     stroke(random(0,155));
+     for (int n = 0; n < 1; n++) {
+    float x1 = random(width);
+    float y1 = random(height);
+    float x2 = random(width);
+    float y2 = random(height);
+    float cx1 = random(width);
+    float cy1 = random(height);
+    float cx2 = random(width);
+    float cy2 = random(height);
+    bezier(x1, y1, cx1, cy1, cx2, cy2, x2, y2);
+  }      } 
+  
+  // C rando colour
+  if (key == 'c' || key == 'C') {
+    fill(c);
+  } 
+  
+  // D Delta Triangle
+   
+   if (key == 'd' || key == 'D') {
+   strokeWeight(3);
+   fill(z);
+   triangle(random(0,1920), random(0,1080), random(0,1920), random(0,1080), random(0,1920), random(0,1080));
+  }
+  
+  // E Elipse
+  
+   if (key == 'e' || key == 'E') {
+   fill(c); // Problem C is always random and not a normal colour at all???
+   strokeWeight(0);
+   ellipse(random(0,1920), random(0,1080), random(10,100), random(50,100));
+  } 
+  
+  // F Elipse
+  
+   if (key == 'f' || key == 'F') {
+   fill(c); // Problem C is always random and not a normal colour at all???
+   ellipse(random(0,1920), random(0,1080), random(10,100), random(50,100));
+   }
+ // G Gradient
+  
+   if (key == 'g' || key == 'G') {
+  
+ color c1 = color(random(255), random(255), random(255));
+ color c2 = color(random(255), random(255), random(255));
+
+    for (int g = 0; g < height; g++) {
+      float pct = map(g, 0, height, 0, 1);
+      color c3 = lerpColor(c1, c2, pct);
+      stroke(c3);
+      line(1, g, width, g);
+    } 
+  }
+  
+ // H   nochmal mehr am grid arbeiten
+  if (key == 'h' || key == 'H') {
+    stroke(c);
+      int gridSize = 10;
+      int spacing = width/gridSize;
+  
+  for (int x = 0; x < width; x += spacing) {
+    for (int y = 0; y < height; y += spacing) {
+      if (random(20) < 1) {
+        line(x, y, x + spacing, y + spacing);
+      } else {
+        line(x + spacing, y, x, y + spacing);
+      }
+    }
+  }
+  } 
+  
+  // I Invert 
+ 
+ if (key == 'i' || key == 'I') {
+  PImage img = get();
+  for (int i = 0; i < img.pixels.length; i++) {
+    img.pixels[i] = color(255 - red(img.pixels[i]), 255 - green(img.pixels[i]), 255 - blue(img.pixels[i]));
+  }
+  img.updatePixels();
+  image(img, 0, 0);
+    }
+ 
+ // J  
+ 
+ if (key == 'j' || key == 'J') {
+   
+ 
+   
+ }
+ 
+  // N Newtriangle
+  
+if (key == 'N' || key == 'N') {
+    
+  
+    }   
+  // S Sine 
+ 
+ if (key == 's' || key == 'S') {
+  stroke(0);
+  strokeWeight(2);
+  noFill();
+
+  // Generate random values for the sine wave
+  float amplitude = random(10, 800);
+  float frequency = random(0.02, 0.05);
+  float phase = random(TWO_PI);
+
+  // Draw the sine wave
+  beginShape();
+  for (float x = 0; x < width; x += 10) {
+    float y = height / 2 + amplitude * sin(frequency * x + phase);
+    vertex(x, y);
+  }
+  endShape();
+ }
+  }}  
+  
+ </script>
+		<canvas> </canvas>
 </html>
 
