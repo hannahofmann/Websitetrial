@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html> 
 <head> 
-     <script type="text/javascript" src="sketch_drawing.java"></script> 
+     <script type="text/javascript" src="https://github.com/hannahofmann/Websitetrial/blob/main/sketch_drawing.java"></script> 
 </head> 
 <body> 
-     <canvas data-processing-sources="sketch_drawing.pde"></canvas> 
+     <canvas data-processing-sources="https://github.com/hannahofmann/Websitetrial/blob/main/sketch_drawing.pde"></canvas> 
 </body> 
 </html> 
