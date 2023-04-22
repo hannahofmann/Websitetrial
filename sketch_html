@@ -1,10 +1,12 @@
-<!DOCTYPE html>
 <html>
-<head>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
-</head>
-<body>
- <script type="application/processing">
+	<head>
+		<title>My Sketch</title>
+    
+   
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+	</head>
+	<body>
+		<script type="application/processing">
  int p = 50; 
 int k = 100;
 PFont font;
@@ -178,7 +180,7 @@ if (key == 'N' || key == 'N') {
  }
   }}  
   
- </script>
+	</script>
 		<canvas> </canvas>
+	</body>
 </html>
-
