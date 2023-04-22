@@ -1,23 +1,30 @@
+
+let myFont;
 let p = 50;
 let k = 100;
-let font;
 let foreground;
 let g;
 let n;
+let phaseValue;
+
+function preload() {
+  myFont = loadFont('ANDALEMO.TTF');
+}
 
 function setup() {
   createCanvas(1080, 1080);
   pixelDensity(1);
   smooth();
-  font = createFont("Roboto-Bold", 114);
+  textFont(myFont);
   foreground = createGraphics(width, height);
+  phaseValue = random(TWO_PI);
+  randomSeed(123);
 }
 
 function keyPressed() {
-  foreground.beginDraw();
+  push();
   foreground.textSize(144);
-  foreground.textFont(font);
-
+  foreground.textFont(myFont);
   let textWidth = foreground.textWidth(key);
   if (p + textWidth > width) {
     p = 50;
@@ -25,7 +32,7 @@ function keyPressed() {
   }
   foreground.text(key, p, k);
   p += textWidth;
-  foreground.endDraw();
+  pop();
 }
 
 function draw() {
@@ -35,14 +42,13 @@ function draw() {
 
   if (keyIsPressed) {
     // A random squares
-    if (key == "a" || key == "A") {
+    if (key === 'a' || key === 'A') {
       strokeWeight(0);
       fill(c);
       rect(random(0, 1920), random(0, 1080), 50, 50);
     }
-
     // B Bezier
-    if (key == "b" || key == "B") {
+    if (key === 'b' || key === 'B') {
       fill(z);
       strokeWeight(1);
       stroke(random(0, 155));
@@ -58,51 +64,29 @@ function draw() {
         bezier(x1, y1, cx1, cy1, cx2, cy2, x2, y2);
       }
     }
-
     // C random colour
-    if (key == "c" || key == "C") {
+    if (key === 'c' || key === 'C') {
       fill(c);
     }
-
     // D Delta Triangle
-    if (key == "d" || key == "D") {
+    if (key === 'd' || key === 'D') {
       strokeWeight(3);
       fill(z);
-      triangle(
-        random(0, 1920),
-        random(0, 1080),
-        random(0, 1920),
-        random(0, 1080),
-        random(0, 1920),
-        random(0, 1080)
-      );
+      triangle(random(0, 1920), random(0, 1080), random(0, 1920), random(0, 1080), random(0, 1920), random(0, 1080));
     }
-
-    // E Ellipse
-    if (key == "e" || key == "E") {
-      fill(c);
-      // Problem C is always random and not a normal colour at all???
+    // E Elipse
+    if (key === 'e' || key === 'E') {
+      fill(c); // Problem C is always random and not a normal colour at all???
       strokeWeight(0);
-      ellipse(
-        random(0, 1920),
-        random(0, 1080),
-        random(10, 100),
-        random(50, 100)
-      );
+      ellipse(random(0, 1920), random(0, 1080), random(10, 100), random(50, 100));
     }
-
-    // F Ellipse
-    if (key == "f" || key == "F") {
-      fill(c);
-      // Problem C is always random and not a normal colour at all???
-      ellipse(
-        random(0, 1920),
-        random(0, 1080),
-        random(10, 100),
-        random(50, 100)
-      );
+    // F Elipse
+    if (key === 'f' || key === 'F') {
+      fill(c); // Problem C is always random and not a normal colour at all???
+      ellipse(random(0, 1920), random(0, 1080), random(10, 100), random(50, 100));
     }
-
+   
+  
   // G Gradient
   if (key == 'g' || key == 'G') {
     let c1 = color(random(255), random(255), random(255));
@@ -113,12 +97,12 @@ function draw() {
       let c3 = lerpColor(c1, c2, pct);
       stroke(c3);
       line(1, g, width, g);
-    } 
+    }
   }
-
-  // H   nochmal mehr am grid arbeiten
+  
+  // H Grid
   if (key == 'h' || key == 'H') {
-    stroke(c);
+    stroke(0);
     let gridSize = 10;
     let spacing = width/gridSize;
 
@@ -131,26 +115,22 @@ function draw() {
         }
       }
     }
-  }
+  } 
 
-  // I Invert 
+  // I Invert
   if (key == 'i' || key == 'I') {
-    let img = get();
-    for (let i = 0; i < img.pixels.length; i++) {
-      img.pixels[i] = color(255 - red(img.pixels[i]), 255 - green(img.pixels[i]), 255 - blue(img.pixels[i]));
+    loadPixels();
+    for (let i = 0; i < pixels.length; i++) {
+      pixels[i] = 255 - pixels[i];
     }
-    img.updatePixels();
-    image(img, 0, 0);
+    updatePixels();
   }
 
   // J
 
   // N Newtriangle
-  if (key == 'N' || key == 'N') {
-    
-  }
 
-  // S Sine 
+  // S Sine
   if (key == 's' || key == 'S') {
     stroke(0);
     strokeWeight(2);
@@ -163,10 +143,12 @@ function draw() {
 
     // Draw the sine wave
     beginShape();
-    for (let x = 0; x < width; x += 10) {
-      let y = height / 2 + amplitude * sin(frequency * x + phase);
-      vertex(x, y);
-    }
-    endShape();
+for (let x = 0; x < width; x += 10) {
+  let y = height / 2 + amplitude * sin(frequency * x + phaseValue);
+  vertex(x, y);
+}
+endShape();
   }
-}}
+}
+
+}
