@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>My Processing Sketch</title>
-  <script src="https://cs.nyu.edu/~kapp/cs101/processing_on_the_web/processing.js"></script>
+  <script src="sketch_drawing.js"></script>
   <script src="sketch.js"></script>
 </head>
 <body>
