@@ -4,6 +4,6 @@
      <script type="text/javascript" src="/sketch_drawing.java"></script> 
 </head> 
 <body> 
-     <canvas width="1080px" height="1080px" data-processing-sources="/sketch_drawing.pde"></canvas> 
+     <canvas data-processing-sources="/sketch_drawing.pde"></canvas> 
 </body> 
 </html> 
