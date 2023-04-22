@@ -7,10 +7,7 @@
   <script src="sketch.js"></script>
 </head>
 <body>
-  <canvas id="theCanvas" data-processing-sources="sketch_drawing.pde"></canvas>
-  </script>
+  <canvas id="theCanvas" data-processing-target="theCanvas"></canvas>
 </body>
 </html>
-
-
 
